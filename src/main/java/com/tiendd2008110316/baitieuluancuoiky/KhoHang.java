@@ -1,15 +1,16 @@
-package com.tiendd2008110316.baitieuluancuoiky;
+package main;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+
 public class KhoHang {
 	DienMay headDienMay;
 	SanhSu headSanhSu;
 	ThucPham headThucPham;
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
 	KhoHang(){
 		
@@ -63,10 +64,191 @@ public class KhoHang {
 				}
 				cur = cur.next;
 			}
+		}else {
+			System.out.println("Bạn đã nhập sai hãy thực hiện lại\n");
 		}
 	}
 	
-	
+	public void SuaHang(Scanner scanner) {
+		System.out.print("Bạn muốn sửa hàng theo Id hay loại hàng? 1) loại hàng	2) ID hàng ----> Lựa chọn: "); int cachsua = scanner.nextInt();
+		
+		if (cachsua == 1) {
+			System.out.println("Hãy nhập thông tin hàng bạn muốn sửa\n Loại hàng: 1) Điện máy	2) Sành Sứ	3) Thực Phẩm ----> Lựa chọn: "); int loaiHang = scanner.nextInt();
+			if (loaiHang == 1) {
+				DienMay cur = headDienMay;
+				while (cur != null) {
+					cur.inTT();
+					cur = cur.next;
+				}
+				System.out.print("Chọn hàng mà bạn muốn sửa theo thứ tự trên xuống 1 2 3 ...: "); int hangthu = scanner.nextInt();
+				cur = headDienMay;
+				for (int i = 0; i < hangthu; i++) {
+					cur = cur.next;
+					cur.inTT();
+					System.out.println("Hãy sửa lại thông tin");
+					
+					System.out.print("Tên hàng:"); scanner.nextLine(); cur.name = scanner.nextLine();
+					System.out.print("ID hàng:");	cur.id = scanner.nextInt();
+					System.out.print("Giá hàng:"); cur.gia = scanner.nextFloat();
+					System.out.print("Ngày nhập hàng theo mẫu dd-MM-yyyy:");
+					
+					Date b = null;
+					scanner.nextLine();
+					String date = scanner.nextLine();
+					try {
+						//Parsing the String
+						b = dateFormat.parse(date);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					cur.ngayNhapKho = b;
+				}
+			}
+			
+			if (loaiHang == 2) {
+				SanhSu cur = headSanhSu;
+				while (cur != null) {
+					cur.inTT();
+					cur = cur.next;
+				}
+				System.out.print("Chọn hàng mà bạn muốn sửa theo thứ tự trên xuống 1 2 3 ...: "); int hangthu = scanner.nextInt();
+				cur = headSanhSu;
+				for (int i = 0; i < hangthu; i++) {
+					cur = cur.next;
+					cur.inTT();
+					System.out.println("Hãy sửa lại thông tin");
+					
+					System.out.print("Tên hàng:"); scanner.nextLine(); cur.name = scanner.nextLine();
+					System.out.print("ID hàng:");	cur.id = scanner.nextInt();
+					System.out.print("Giá hàng:"); cur.gia = scanner.nextFloat();
+					System.out.print("Ngày nhập hàng theo mẫu (dd-MM-yyyy):");
+					
+					Date b = null;
+					String date = scanner.nextLine();
+					try {
+						//Parsing the String
+						b = dateFormat.parse(date);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					cur.ngayNhapKho = b;
+				}
+			}
+			
+			if (loaiHang == 3) {
+				ThucPham cur = headThucPham;
+				while (cur != null) {
+					cur.inTT();
+					cur = cur.next;
+				}
+				System.out.print("Chọn hàng mà bạn muốn sửa theo thứ tự trên xuống 1 2 3 ...: "); int hangthu = scanner.nextInt();
+				cur = headThucPham;
+				for (int i = 0; i < hangthu; i++) {
+					cur = cur.next;
+					cur.inTT();
+					System.out.println("Hãy sửa lại thông tin");
+					
+					System.out.print("Tên hàng:"); scanner.nextLine(); cur.name = scanner.nextLine();
+					System.out.print("ID hàng:");	cur.id = scanner.nextInt();
+					System.out.print("Giá hàng:"); cur.gia = scanner.nextFloat();
+					System.out.print("Ngày nhập hàng theo mẫu (dd-MM-yyyy):");
+					
+					Date b = null;
+					scanner.nextLine();
+					String date = scanner.nextLine();
+					try {
+						//Parsing the String
+						b = dateFormat.parse(date);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					cur.ngayNhapKho = b;
+				}
+			}
+		}else if (cachsua == 2) {
+			System.out.print("Hãy nhập id hàng bạn cần sửa: "); int id = scanner.nextInt();
+			DienMay curDM = headDienMay;
+			SanhSu curSS = headSanhSu;
+			ThucPham curTP = headThucPham;
+			
+			while (curDM != null) {
+				if (curDM.id == id) {
+					curDM.inTT();
+					System.out.println("Hãy sửa lại thông tin");
+					System.out.print("Tên hàng:"); scanner.nextLine(); curDM.name = scanner.nextLine();
+					System.out.print("ID hàng:");	curDM.id = scanner.nextInt();
+					System.out.print("Giá hàng:"); curDM.gia = scanner.nextFloat();
+					System.out.print("Ngày nhập hàng theo mẫu (dd-MM-yyyy):");
+					
+					Date b = null;
+					scanner.nextLine();
+					String date = scanner.nextLine();
+					try {
+						//Parsing the String
+						b = dateFormat.parse(date);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					curDM.ngayNhapKho = b;
+					return;
+				}
+				curDM = curDM.next;
+			}
+			
+			while (curSS != null) {
+				if (curSS.id == id) {
+					curSS.inTT();
+					System.out.println("Hãy sửa lại thông tin");
+					System.out.print("Tên hàng:"); scanner.nextLine(); curSS.name = scanner.nextLine();
+					System.out.print("ID hàng:");	curSS.id = scanner.nextInt();
+					System.out.print("Giá hàng:"); curSS.gia = scanner.nextFloat();
+					System.out.print("Ngày nhập hàng theo mẫu (dd-MM-yyyy):");
+					
+					Date b = null;
+					scanner.nextLine();
+					String date = scanner.nextLine();
+					try {
+						//Parsing the String
+						b = dateFormat.parse(date);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					curSS.ngayNhapKho = b;
+					return;
+				}
+				curSS = curSS.next;
+			}
+			
+			while (curTP != null) {
+				if (curTP.id == id) {
+					curTP.inTT();
+					System.out.println("Hãy sửa lại thông tin");
+					System.out.print("Tên hàng:"); scanner.nextLine(); curTP.name = scanner.nextLine();
+					System.out.print("ID hàng:");	curTP.id = scanner.nextInt();
+					System.out.print("Giá hàng:"); curTP.gia = scanner.nextFloat();
+					System.out.print("Ngày nhập hàng theo mẫu:");
+					
+					Date b = null;
+					scanner.nextLine();
+					String date = scanner.nextLine();
+					try {
+						b = dateFormat.parse(date);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					curTP.ngayNhapKho = b;
+					return;
+				}
+				curTP = curTP.next;
+			}
+		}else
+			System.out.println("Bạn đã nhập sai hãy thực hiện lại\n");
+	}
 	
 	int NhapId(Scanner scanner, int loaihang) {
 		
@@ -146,16 +328,19 @@ public class KhoHang {
 			
 			if (headDienMay.id == idCanXoa) {
 				headDienMay = headDienMay.next;
+				System.out.println("Đã xóa");
 				return;
 			}
 			
 			if (headSanhSu.id == idCanXoa) {
 				headSanhSu = headSanhSu.next;
+				System.out.println("Đã xóa");
 				return;
 			}
 			
 			if (headThucPham.id == idCanXoa) {
 				headThucPham = headThucPham.next;
+				System.out.println("Đã xóa");
 				return;
 			}
 			
@@ -166,6 +351,7 @@ public class KhoHang {
 			while (curDM.next != null) {
 				if (curDM.next.id == idCanXoa) {
 					curDM.next = curDM.next.next;
+					System.out.println("Đã xóa");
 					return;
 				}
 				curDM = curDM.next;
@@ -174,38 +360,41 @@ public class KhoHang {
 			while (curSS.next != null) {
 				if (curSS.next.id == idCanXoa) {
 					curSS.next = curSS.next.next;
+					System.out.println("Đã xóa");
 					return;
 				}
 				curSS = curSS.next;
 			}
 			
-			while (curTP != null) {
+			while (curTP.next != null) {
 				if (curTP.next.id == idCanXoa) {
 					curTP.next = curTP.next.next;
+					System.out.println("Đã xóa");
 					return;
 				}
 				curTP = curTP.next;
 			}
-			System.out.println("Đã xóa");
-		}
-		
-		if (cachxoa == 2) {
+			System.out.println("Không tìm thấy");
+		}else if (cachxoa == 2) {
 			System.out.print("Hãy nhập tên hàng cần xóa: ");
 			scanner.nextLine();
 			String idCanXoa = scanner.nextLine();
 			
 			if (headDienMay.name.equalsIgnoreCase(idCanXoa)) {
 				headDienMay = headDienMay.next;
+				System.out.println("Đã xóa");
 				return;
 			}
 			
 			if (headSanhSu.name.equalsIgnoreCase(idCanXoa)) {
 				headSanhSu = headSanhSu.next;
+				System.out.println("Đã xóa");
 				return;
 			}
 			
 			if (headThucPham.name.equalsIgnoreCase(idCanXoa)) {
 				headThucPham = headThucPham.next;
+				System.out.println("Đã xóa");
 				return;
 			}
 			
@@ -216,6 +405,7 @@ public class KhoHang {
 			while (curDM.next != null) {
 				if (curDM.next.name.equalsIgnoreCase(idCanXoa)) {
 					curDM.next = curDM.next.next;
+					System.out.println("Đã xóa");
 					return;
 				}
 				curDM = curDM.next;
@@ -224,25 +414,75 @@ public class KhoHang {
 			while (curSS.next != null) {
 				if (curSS.next.name.equalsIgnoreCase(idCanXoa)) {
 					curSS.next = curSS.next.next;
+					System.out.println("Đã xóa");
 					return;
 				}
 				curSS = curSS.next;
 			}
 			
-			while (curTP != null) {
+			while (curTP.next != null) {
 				if (curTP.next.name.equalsIgnoreCase(idCanXoa)) {
 					curTP.next = curTP.next.next;
+					System.out.println("Đã xóa");
 					return;
 				}
 				curTP = curTP.next;
 			}
-			System.out.println("Đã xóa");
-		}
-
-		if (cachxoa == 3) {
+			System.out.println("Không tìm thấy");
+		}else if (cachxoa == 3) {
+			System.out.println("Hãy nhập giá hàng cần xóa"); float giacanxoa = scanner.nextFloat();
 			
-		}
-		
+			if (headDienMay.gia == giacanxoa) {
+				headDienMay = headDienMay.next;
+				System.out.println("Đã xóa");
+				return;
+			}
+			
+			if (headSanhSu.gia == giacanxoa) {
+				headSanhSu = headSanhSu.next;
+				System.out.println("Đã xóa");
+				return;
+			}
+			
+			if (headThucPham.gia == giacanxoa) {
+				headThucPham = headThucPham.next;
+				System.out.println("Đã xóa");
+				return;
+			}
+			
+			DienMay curDM = headDienMay;
+			SanhSu curSS = headSanhSu;
+			ThucPham curTP = headThucPham;
+			
+			while (curDM.next != null) {
+				if (curDM.next.gia == giacanxoa) {
+					curDM.next = curDM.next.next;
+					System.out.println("Đã xóa");
+					return;
+				}
+				curDM = curDM.next;
+			}
+			
+			while (curSS.next != null) {
+				if (curSS.next.gia == giacanxoa) {
+					curSS.next = curSS.next.next;
+					System.out.println("Đã xóa");
+					return;
+				}
+				curSS = curSS.next;
+			}
+			
+			while (curTP.next != null) {
+				if (curTP.next.gia == giacanxoa) {
+					curTP.next = curTP.next.next;
+					System.out.println("Đã xóa");
+					return;
+				}
+				curTP = curTP.next;
+			}
+			System.out.println("Không tìm thấy");
+		}else
+			System.out.println("Bạn đã nhập sai hãy thực hiện lại\n");
 	}
 	
 	public void TimHang(Scanner scanner) {
@@ -309,7 +549,8 @@ public class KhoHang {
 			}
 			
 		}else if (cachtim == 3) {
-			System.out.println("Hãy nhập khoảng ngày nhập kho sản phẩm bạn muốn tìm (dd-mm-yyyy)\nTừ ngày: ");
+			System.out.println("Hãy nhập khoảng ngày nhập kho sản phẩm bạn muốn tìm (dd-MM-yyyy)\nTừ ngày: ");
+			scanner.nextLine();
 			String date = scanner.nextLine();
 			
 			int count = 0;
@@ -322,7 +563,7 @@ public class KhoHang {
 				return;
 			}
 			
-			System.out.println("Đến ngày: ");
+			System.out.print("Đến ngày: "); date = scanner.nextLine();
 			Date endDate;
 			try {
 				endDate = dateFormat.parse(date);
@@ -333,7 +574,7 @@ public class KhoHang {
 			
 			DienMay curDM = headDienMay;
 			while (curDM != null) {
-				if (curDM.ngayNhapKho.compareTo(startDate) >= 0 && curDM.ngayNhapKho.compareTo(startDate) <= 0) {
+				if (curDM.ngayNhapKho.compareTo(startDate) >= 0 && curDM.ngayNhapKho.compareTo(endDate) <= 0) {
 					count++;
 					curDM.inTT();
 				}
@@ -349,7 +590,7 @@ public class KhoHang {
 			
 			SanhSu curSS = headSanhSu;
 			while (curSS != null) {
-				if (curSS.ngayNhapKho.compareTo(startDate) >= 0 && curSS.ngayNhapKho.compareTo(startDate) <= 0) {
+				if (curSS.ngayNhapKho.compareTo(startDate) >= 0 && curSS.ngayNhapKho.compareTo(endDate) <= 0) {
 					count++;
 					curSS.inTT();
 				}
@@ -364,14 +605,15 @@ public class KhoHang {
 			
 			ThucPham curTP = headThucPham;
 			while (curTP != null) {
-				if (curTP.ngayNhapKho.compareTo(startDate) >= 0 && curTP.ngayNhapKho.compareTo(startDate) <= 0) {
+				if (curTP.ngayNhapKho.compareTo(startDate) >= 0 && curTP.ngayNhapKho.compareTo(endDate) <= 0) {
 					count++;
 					curTP.inTT();
 				}
 				
 				curTP = curTP.next;
 			}
-		}
+		}else
+			System.out.println("Bạn đã nhập sai hãy thực hiện lại\n");
 	}
 	
 	public void ThongKe(Scanner scanner) {
@@ -419,9 +661,58 @@ public class KhoHang {
 		
 	}
 	
-	private void XoaHangTheoTen() {
+	public void SapXep(Scanner scanner) {
+		System.out.print("Bạn muốn sắp xếp theo?\n1) Giá nhập	2) Ngày nhập ----> Lựa chọn: "); int luachon = scanner.nextInt();
+		
+		if (luachon == 1) {
+			
+		}else if (luachon == 2) {
+			DienMay startDM = headDienMay;
+			SanhSu startSS = headSanhSu;
+			ThucPham startTP = headThucPham;
+			
+			DienMay bienchayDM = startDM;
+			
+			while (startDM != null) {
+				while (bienchayDM.next != null) {
+					if ((int)bienchayDM.next.ngayNhapKho.getYear() < (int)startDM.ngayNhapKho.getYear()) {
+						DienMay newNode = new DienMay(bienchayDM.next.id, bienchayDM.next.name, bienchayDM.next.gia, bienchayDM.next.ngayNhapKho);
+						
+						if (startDM == headDienMay) {
+							
+						}
+						
+						
+						
+						if (bienchayDM == startDM) {
+							bienchayDM.next = bienchayDM.next.next;
+							newNode.next = startDM;
+						}else {
+							
+							DienMay newNodeSwap = new DienMay(bienchayDM.next.next.id, bienchayDM.next.next.name, bienchayDM.next.next.gia, bienchayDM.next.next.ngayNhapKho);
+							newNodeSwap.next = bienchayDM.next.next.next;
+							newNode.next = startDM.next;
+							bienchayDM.next = startDM;
+							startDM.next = newNodeSwap;
+						}
+					}else if(bienchayDM.ngayNhapKho.getMonth() < startDM.ngayNhapKho.getMonth()){
+						
+					}else if (bienchayDM.ngayNhapKho.getDay() < startDM.ngayNhapKho.getDay()){
+						
+					}
+					
+					bienchayDM = bienchayDM.next;
+				}
+				startDM = startDM.next;
+				bienchayDM = startDM;
+			}
+			
+			
+			
+		}else {
+			System.out.println("Bạn đã nhập sai\n");
+			return;
+		}
 		
 	}
-	
-	
 }

@@ -1,4 +1,4 @@
-package com.tiendd2008110316.baitieuluancuoiky;
+package main;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -36,7 +36,7 @@ public class DienMay {
 	}
 	
 	public void inTT() {
-		System.out.println("Tên hàng: " +name+ ", Loại hàng: Điện máy, Id: " +id+ ", Giá: " +gia+ ", Ngày nhập: "+ngayNhapKho);
+		System.out.println("Tên hàng: " +name+ ", Loại hàng: Điện máy, Id: " +id+ ", Giá: " +(gia*1000)+ "VND, Ngày nhập: "+ngayNhapKho);
 	}
 	
 	public String GetName() {
