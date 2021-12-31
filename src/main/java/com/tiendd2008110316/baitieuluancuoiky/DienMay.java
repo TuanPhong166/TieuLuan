@@ -1,4 +1,4 @@
-package main;
+package com.tiendd2008110316.baitieuluancuoiky ;
 
 import java.util.Date;
 import java.util.Scanner;
